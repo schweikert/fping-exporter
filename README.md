@@ -43,7 +43,7 @@ This graph shows the fping\_rtt summary as "SmokePing"-like graph in Grafana:
        - source_labels: [__param_target]
          target_label: instance
        - target_label: __address__
-         replacement: 127.0.0.1:8080  # The blackbox exporter's real hostname:port.
+         replacement: 127.0.0.1:8080  # The fping-exporter's real hostname:port.
    ```
 
 ## Metrics
