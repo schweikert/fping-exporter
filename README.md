@@ -50,8 +50,8 @@ This graph shows the fping\_rtt summary as "SmokePing"-like graph in Grafana:
 
 fping-exporter produces the following metrics:
 
-- `fping\_sent\_count`: Number of sent probes
-- `fping\_lost\_count`: Number of lost probes
-- `fping\_rtt\_count`: Number of measured latencies (successful probes)
-- `fping\_rtt\_sum`: Sum of measured latencies
-- `fping\_rtt`: Summary of measured latencies
+- `fping_sent_count`: Number of sent probes
+- `fping_lost_count`: Number of lost probes
+- `fping_rtt_count`: Number of measured latencies (successful probes)
+- `fping_rtt_sum`: Sum of measured latencies
+- `fping_rtt`: Summary of measured latencies
