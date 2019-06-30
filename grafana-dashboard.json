@@ -1,0 +1,587 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "6.2.5"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1561907370967,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 0,
+      "gridPos": {
+        "h": 19,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "interval": "",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "p100",
+          "color": "#404040",
+          "fillBelowTo": "p95",
+          "lines": false
+        },
+        {
+          "alias": "p95",
+          "color": "#575757",
+          "fillBelowTo": "p90",
+          "lines": false
+        },
+        {
+          "alias": "p90",
+          "color": "#6f6f6f",
+          "fillBelowTo": "p85",
+          "lines": false
+        },
+        {
+          "alias": "p85",
+          "color": "#878787",
+          "fillBelowTo": "p80",
+          "lines": false
+        },
+        {
+          "alias": "p80",
+          "color": "#9f9f9f",
+          "fillBelowTo": "p75",
+          "lines": false
+        },
+        {
+          "alias": "p75",
+          "color": "#b7b7b7",
+          "fillBelowTo": "p70",
+          "lines": false
+        },
+        {
+          "alias": "p70",
+          "color": "#cfcfcf",
+          "fillBelowTo": "p65",
+          "lines": false
+        },
+        {
+          "alias": "p65",
+          "color": "#e7e7e7",
+          "fillBelowTo": "p60",
+          "lines": false
+        },
+        {
+          "alias": "p60",
+          "color": "#ffffff",
+          "fillBelowTo": "p55",
+          "lines": false
+        },
+        {
+          "alias": "p55",
+          "color": "#ffffff",
+          "fillBelowTo": "p50",
+          "lines": false
+        },
+        {
+          "alias": "p50",
+          "color": "#ffffff",
+          "fillBelowTo": "p45",
+          "lines": false
+        },
+        {
+          "alias": "p45",
+          "color": "#e7e7e7",
+          "fillBelowTo": "p40",
+          "lines": false
+        },
+        {
+          "alias": "p40",
+          "color": "#cfcfcf",
+          "fillBelowTo": "p35",
+          "lines": false
+        },
+        {
+          "alias": "p35",
+          "color": "#b7b7b7",
+          "fillBelowTo": "p30",
+          "lines": false
+        },
+        {
+          "alias": "p30",
+          "color": "#9f9f9f",
+          "fillBelowTo": "p25",
+          "lines": false
+        },
+        {
+          "alias": "p25",
+          "color": "#878787",
+          "fillBelowTo": "p20",
+          "lines": false
+        },
+        {
+          "alias": "p20",
+          "color": "#6f6f6f",
+          "fillBelowTo": "p15",
+          "lines": false
+        },
+        {
+          "alias": "p15",
+          "color": "#575757",
+          "fillBelowTo": "p10",
+          "lines": false
+        },
+        {
+          "alias": "p10",
+          "color": "#404040",
+          "fillBelowTo": "p5",
+          "lines": false
+        },
+        {
+          "alias": "p5",
+          "lines": false
+        },
+        {
+          "alias": "median",
+          "color": "#FFB357",
+          "zindex": 1
+        },
+        {
+          "alias": "l100",
+          "color": "#202020",
+          "hideTooltip": true,
+          "legend": false
+        },
+        {
+          "alias": "l5",
+          "color": "#202020",
+          "hideTooltip": true,
+          "legend": false
+        },
+        {
+          "alias": "/p.*/",
+          "legend": false
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"1.000\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p100",
+          "refId": "B"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.950\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p95",
+          "refId": "C"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.850\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p85",
+          "refId": "E"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.900\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p90",
+          "refId": "D"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.800\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p80",
+          "refId": "F"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.750\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p75",
+          "refId": "H"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.700\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p70",
+          "refId": "I"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.650\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p65",
+          "refId": "J"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.600\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p60",
+          "refId": "K"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.550\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p55",
+          "refId": "L"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.500\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p50",
+          "refId": "M"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.450\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p45",
+          "refId": "A"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.400\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p40",
+          "refId": "N"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.350\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p35",
+          "refId": "O"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.300\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p30",
+          "refId": "P"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.250\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p25",
+          "refId": "Q"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.200\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p20",
+          "refId": "R"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.150\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p15",
+          "refId": "S"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.100\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p10",
+          "refId": "T"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.050\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p5",
+          "refId": "U"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.500\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "median",
+          "refId": "G"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"1.000\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "l100",
+          "refId": "V"
+        },
+        {
+          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.050\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "l5",
+          "refId": "W"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Ping Latency",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 2,
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg_over_time(fping_lost_count{instance=\"$host\"}[$__interval])/avg_over_time(fping_sent_count{instance=\"$host\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% loss",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Packet Loss",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 18,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(fping_rtt_count, instance)",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "label_values(fping_rtt_count, instance)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "fping",
+  "uid": "exQs214Wk",
+  "version": 15
+}
