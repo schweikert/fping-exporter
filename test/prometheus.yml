@@ -1,0 +1,28 @@
+global:
+    scrape_interval: 60s
+
+scrape_configs:
+    - job_name: test
+      metrics_path: /probe
+      static_configs:
+      - targets:
+        - "8.8.8.8"
+        - "127.0.0.1"
+        - "128.0.0.1"
+        - "www.bing.com"
+        - "62.115.112.242"
+        - "speedtest-lon1.digitalocean.com"
+        - "speedtest-sfo1.digitalocean.com"
+        - "speedtest-ams1.digitalocean.com"
+        - "speedtest-ams2.digitalocean.com"
+        - "speedtest-nyc1.digitalocean.com"
+        - "speedtest-nyc2.digitalocean.com"
+        - "speedtest-nyc3.digitalocean.com"
+        - "speedtest-sgp1.digitalocean.com"
+      relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:8080  # The blackbox exporter's real hostname:port.
