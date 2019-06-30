@@ -17,7 +17,7 @@ This graph shows the fping\_rtt summary as "SmokePing"-like graph in Grafana:
      fping-exporter [OPTIONS]
    
    Application Options:
-     -l, --listen=[HOST]:PORT    Listen address (default: :8080)
+     -l, --listen=[HOST]:PORT    Listen address (default: :9605)
      -p, --period=SECS           Period in seconds, should match Prometheus scrape interval (default: 60)
      -f, --fping=PATH            Fping binary path (default: /usr/bin/fping)
      -c, --count=N               Number of pings to send at each period (default: 20)
@@ -43,7 +43,7 @@ This graph shows the fping\_rtt summary as "SmokePing"-like graph in Grafana:
        - source_labels: [__param_target]
          target_label: instance
        - target_label: __address__
-         replacement: 127.0.0.1:8080  # The fping-exporter's real hostname:port.
+         replacement: 127.0.0.1:9605  # The fping-exporter's real hostname:port.
    ```
 
 ## Metrics

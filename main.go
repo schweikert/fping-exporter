@@ -12,7 +12,7 @@ import (
 )
 
 var opts struct {
-	Listen  string `short:"l" long:"listen" description:"Listen address" value-name:"[HOST]:PORT" default:":8080"`
+	Listen  string `short:"l" long:"listen" description:"Listen address" value-name:"[HOST]:PORT" default:":9605"`
 	Period  uint   `short:"p" long:"period" description:"Period in seconds, should match Prometheus scrape interval" value-name:"SECS" default:"60"`
 	Fping   string `short:"f" long:"fping"  description:"Fping binary path" value-name:"PATH" default:"/usr/bin/fping"`
 	Count   uint   `short:"c" long:"count"  description:"Number of pings to send at each period" value-name:"N" default:"20"`
