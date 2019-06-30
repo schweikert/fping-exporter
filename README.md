@@ -7,6 +7,9 @@ performing thanks to fping.
 
 **WARNING: This is currently a work in progress, the code is not production-ready yet**
 
+This graph shows the fping\_rtt summary as "SmokePing"-like graph in Grafana:
+![screenshot](README_screenshot.png)
+
 ## Usage
 
 1. Start fping-exporter as follows:
