@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1584730962687,
+  "iteration": 1584732188434,
   "links": [],
   "panels": [
     {
@@ -62,7 +62,7 @@
         "y": 0
       },
       "id": 2,
-      "interval": "",
+      "interval": "1m",
       "legend": {
         "avg": false,
         "current": false,
@@ -513,5 +513,5 @@
   "timezone": "",
   "title": "fping",
   "uid": "exQs214Wk",
-  "version": 20
+  "version": 21
 }
