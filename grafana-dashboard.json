@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1561907370967,
+  "iteration": 1584730962687,
   "links": [],
   "panels": [
     {
@@ -56,8 +56,8 @@
       "dashes": false,
       "fill": 0,
       "gridPos": {
-        "h": 19,
-        "w": 24,
+        "h": 7,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -77,12 +77,15 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
+      "maxPerRow": 2,
       "nullPointMode": "null",
       "options": {},
       "percentage": false,
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
+      "repeat": "host",
+      "repeatDirection": "h",
       "seriesOverrides": [
         {
           "alias": "p100",
@@ -205,6 +208,7 @@
         {
           "alias": "median",
           "color": "#FFB357",
+          "linewidth": 3,
           "zindex": 1
         },
         {
@@ -222,6 +226,13 @@
         {
           "alias": "/p.*/",
           "legend": false
+        },
+        {
+          "alias": "% loss",
+          "bars": true,
+          "color": "#E02F44",
+          "yaxis": 2,
+          "zindex": -3
         }
       ],
       "spaceLength": 10,
@@ -229,172 +240,179 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"1.000\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"1.000\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p100",
           "refId": "B"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.950\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.950\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p95",
           "refId": "C"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.850\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.850\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p85",
           "refId": "E"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.900\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.900\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p90",
           "refId": "D"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.800\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.800\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p80",
           "refId": "F"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.750\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.750\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p75",
           "refId": "H"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.700\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.700\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p70",
           "refId": "I"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.650\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.650\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p65",
           "refId": "J"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.600\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.600\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p60",
           "refId": "K"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.550\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.550\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p55",
           "refId": "L"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.500\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.500\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p50",
           "refId": "M"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.450\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.450\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p45",
           "refId": "A"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.400\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.400\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p40",
           "refId": "N"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.350\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.350\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p35",
           "refId": "O"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.300\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.300\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p30",
           "refId": "P"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.250\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.250\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p25",
           "refId": "Q"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.200\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.200\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p20",
           "refId": "R"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.150\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.150\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p15",
           "refId": "S"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.100\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.100\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p10",
           "refId": "T"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.050\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.050\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p5",
           "refId": "U"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.500\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.500\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "median",
           "refId": "G"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"1.000\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"1.000\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "l100",
           "refId": "V"
         },
         {
-          "expr": "avg_over_time(fping_rtt{instance=\"$host\",quantile=\"0.050\"}[$__interval])",
+          "expr": "avg_over_time(fping_rtt{instance=~\"$host\",quantile=\"0.050\"}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "l5",
           "refId": "W"
+        },
+        {
+          "expr": "avg_over_time(fping_lost_count{instance=~\"$host\"}[$__interval])/avg_over_time(fping_sent_count{instance=~\"$host\"}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% loss",
+          "refId": "X"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Ping Latency",
+      "title": "Ping Latency [[host]]",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -415,108 +433,20 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
-          "format": "short",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "1",
+          "min": "0",
           "show": true
         }
       ],
       "yaxis": {
         "align": true,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 2,
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 19
-      },
-      "id": 4,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg_over_time(fping_lost_count{instance=\"$host\"}[$__interval])/avg_over_time(fping_sent_count{instance=\"$host\"}[$__interval])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "% loss",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Packet Loss",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percentunit",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
         "alignLevel": null
       }
     }
@@ -533,9 +463,9 @@
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(fping_rtt_count, instance)",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": null,
-        "multi": false,
+        "multi": true,
         "name": "host",
         "options": [],
         "query": "label_values(fping_rtt_count, instance)",
@@ -583,5 +513,5 @@
   "timezone": "",
   "title": "fping",
   "uid": "exQs214Wk",
-  "version": 15
+  "version": 20
 }
