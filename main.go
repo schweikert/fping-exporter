@@ -58,6 +58,10 @@ func main() {
 		fmt.Printf("fping-exporter %v (commit %v, built %v)\n", buildVersion, buildCommit, buildDate)
 		os.Exit(0)
 	}
+	if _, err := os.Stat(opts.Fping); os.IsNotExist(err) {
+		fmt.Printf("could not find fping at %q\n", opts.Fping)
+		os.Exit(1)
+	}
 	http.Handle("/metrics", promhttp.Handler())
 	http.HandleFunc("/probe", probeHandler)
 	log.Fatal(http.ListenAndServe(opts.Listen, nil))
