@@ -104,8 +104,9 @@ func (w *Worker) cycleRun(sleepTime time.Duration) {
 	if err := cmd.Run(); err != nil {
 		exitErr := err.(*exec.ExitError)
 		ws := exitErr.Sys().(syscall.WaitStatus)
-		// Note: exit 1 is also returned if any host is unreachable
-		if ws.ExitStatus() != 1 {
+		// exit 1 if some hosts were unreachable
+		// exit 2 if any IP addresses were not found,
+		if ws.ExitStatus() != 1 && ws.ExitStatus() != 2 {
 			fmt.Printf("fping error (exit: %d)", ws.ExitStatus())
 			return
 		}
