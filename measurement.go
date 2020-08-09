@@ -62,7 +62,7 @@ func (m Measurements) String() string {
 		if m.lost[i] {
 			str.WriteString("-")
 		} else {
-			str.WriteString(fmt.Sprintf("%.2f", m.rtt[i]))
+			str.WriteString(fmt.Sprintf("%.3f", m.rtt[i] * 1000.0))
 		}
 	}
 	return str.String()
