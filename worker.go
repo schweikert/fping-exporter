@@ -92,27 +92,61 @@ func (w *Worker) cycleRun(sleepTime time.Duration) {
 	for _, t := range w.targets {
 		fpingArgs = append(fpingArgs, t.spec.host)
 	}
-
-	// start fping
-	ctx, cancel := context.WithTimeout(context.Background(), w.spec.period)
-	defer cancel()
-	fmt.Println("start fping: ", fpingArgs)
-	cmd := exec.CommandContext(ctx, opts.Fping, fpingArgs...)
-	var outbuf, errbuf bytes.Buffer
-	cmd.Stdout = &outbuf
-	cmd.Stderr = &errbuf
-	if err := cmd.Run(); err != nil {
-		exitErr := err.(*exec.ExitError)
-		ws := exitErr.Sys().(syscall.WaitStatus)
-		// exit 1 if some hosts were unreachable
-		// exit 2 if any IP addresses were not found,
-		if ws.ExitStatus() != 1 && ws.ExitStatus() != 2 {
-			fmt.Printf("fping error (exit: %d)", ws.ExitStatus())
-			return
+	// limit one command to fping 100 targets
+	hosts := []string{}
+	count := 0
+	for _, t := range w.targets {
+		hosts = append(hosts, t.spec.host)
+		count++
+		if count >= 100 {
+			go func(hosts []string) {
+				ctx, cancel := context.WithTimeout(context.Background(), w.spec.period)
+				defer cancel()
+				cmdString := append(fpingArgs, hosts...)
+				fmt.Println("start fping: ", cmdString)
+				cmd := exec.CommandContext(ctx, opts.Fping, cmdString...)
+				var outbuf, errbuf bytes.Buffer
+				cmd.Stdout = &outbuf
+				cmd.Stderr = &errbuf
+				if err := cmd.Run(); err != nil {
+					exitErr := err.(*exec.ExitError)
+					ws := exitErr.Sys().(syscall.WaitStatus)
+					// exit 1 if some hosts were unreachable
+					// exit 2 if any IP addresses were not found,
+					if ws.ExitStatus() != 1 && ws.ExitStatus() != 2 {
+						fmt.Printf("fping error (exit: %d)", ws.ExitStatus())
+						return
+					}
+				}
+				w.addResults(errbuf.String())
+			}(hosts)
+			hosts = []string{}
+			count = 0
 		}
 	}
+	// fping left targets
+	if len(hosts) > 0 {
+		ctx, cancel := context.WithTimeout(context.Background(), w.spec.period)
+		defer cancel()
+		cmdString := append(fpingArgs, hosts...)
+		fmt.Println("start fping: ", cmdString)
+		cmd := exec.CommandContext(ctx, opts.Fping, cmdString...)
+		var outbuf, errbuf bytes.Buffer
+		cmd.Stdout = &outbuf
+		cmd.Stderr = &errbuf
+		if err := cmd.Run(); err != nil {
+			exitErr := err.(*exec.ExitError)
+			ws := exitErr.Sys().(syscall.WaitStatus)
+			// exit 1 if some hosts were unreachable
+			// exit 2 if any IP addresses were not found,
+			if ws.ExitStatus() != 1 && ws.ExitStatus() != 2 {
+				fmt.Printf("fping error (exit: %d)", ws.ExitStatus())
+				return
+			}
+		}
+		w.addResults(errbuf.String())
+	}
 
-	w.addResults(errbuf.String())
 }
 
 func (w *Worker) addResults(fpingOutput string) {
